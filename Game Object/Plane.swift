@@ -16,33 +16,43 @@ class Plane : GameObject
         Start()
     }
     
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     override func Start()
     {
-        zPosition = 2
+        zPosition = Layer.plane.rawValue
+        Reset()
     }
     
-    override func Update() {
+    override func Update()
+    {
         CheckBounds()
     }
     
-    override func CheckBounds() {
-        if(position.x <= -255)
+    override func CheckBounds()
+    {
+        if(position.x <= -320)
         {
-            position.x = -255
+            position.x = -320
         }
         
-        if(position.x >= 255)
+        if(position.x >= 320)
         {
-            position.x = 255
+            position.x = 320
         }
+    }
+    
+    override func Reset()
+    {
+        position.y = -640
     }
     
     func TouchMove(newPos: CGPoint)
     {
         position = newPos
     }
+    
 }
